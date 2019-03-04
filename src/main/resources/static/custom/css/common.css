@@ -16,13 +16,27 @@
         width: 500px;
         margin-left: -250px;    /*margin-left为width一半的负值*/
     }
+    .login-form-style{
+        margin-left: -75px;
+    }
 }
 /*PC*/
 @media screen and (min-width:960px){
+    .login-header{
+        margin-top: -400px;
+        margin-left: -500px;
+    }
+    .login-header img{
+        margin-top: -50px;
+        margin-left: -100px;
+    }
     .login-box{
         height: 300px;
         margin-top: -150px;   /*margin-top为height一半的负值*/
         width: 600px;
         margin-left: -300px;    /*margin-left为width一半的负值*/
+    }
+    .login-form-style{
+        margin-left: -200px;
     }
 }
