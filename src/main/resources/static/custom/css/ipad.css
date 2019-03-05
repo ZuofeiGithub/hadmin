@@ -5,7 +5,7 @@
         width: 1000px;
         height: 300px;
         margin-top: -400px;
-        margin-left: -450px;
+        margin-left: -430px;
     }
     .login-header img{
         margin-top: -50px;
@@ -15,7 +15,7 @@
         height: 200px;
         margin-top: -100px;   /*margin-top为height一半的负值*/
         width: 500px;
-        margin-left: -210px;    /*margin-left为width一半的负值*/
+        margin-left: -175px;    /*margin-left为width一半的负值*/
     }
     .login-form-style{
         margin-left: -116.5px;

@@ -25,6 +25,13 @@
                     <input type="text" name="pass_word" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
                 </div>
             </div>
+            <div class="layui-form-item item-box-style">
+                <label class="layui-form-label"><i class="layui-icon layui-icon-vercode"></i></label>
+                <div class="layui-input-inline">
+                    <input type="text" name="vercode" lay-verify="required" placeholder="请输入验证码" autocomplete="off" class="layui-input">
+                </div>
+                <img class="layui-form-mid vercode" src="https://www.oschina.net/action/user/captcha" height="38">
+            </div>
             <button class="layui-btn layui-btn-fluid">登陆</button>
         </form>
     </div>
