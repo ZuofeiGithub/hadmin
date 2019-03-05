@@ -54,3 +54,11 @@
 .vercode{
     padding: 0px 0!important;
 }
+.forget-password{
+    float: right;
+    display: block;
+    padding: 9px 0!important;
+    line-height: 20px;
+    margin-right: 0px;
+    color: #029789!important;
+}
