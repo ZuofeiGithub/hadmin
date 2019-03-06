@@ -19,6 +19,7 @@ layui.use(['layer','element','form'], function(){
             $('.layui-side.layui-bg-black').animate({width:'60px'}); //设置宽度
             $('.layui-logo').animate({width:'60px'});
             $('.layui-logo span').hide();
+            $('.layui-layout-admin .layui-header .layui-nav').animate({marginLeft:'-100px'})
             $('.layui-logo i').removeClass('layui-hide');
             //将footer和body的宽度修改
             $('.layui-body').css('left', 60+'px');
@@ -31,6 +32,7 @@ layui.use(['layer','element','form'], function(){
             isShow =false;
         }else{
             $('.layui-side.layui-bg-black').animate({width:'200px'});
+            $('.layui-layout-admin .layui-header .layui-nav').animate({marginLeft:'0px'})
             $('.layui-body').css('left', 200+'px');
             $('.layui-footer').css('left', 200+'px');
             $('.layui-logo').animate({width:'200px'});
