@@ -39,7 +39,7 @@ layui.define(['layer', 'form', 'tips'], function(exports) {
         $.post('/json/login.json', data.field, function (json) {
             if (json.errcode == 0) {
                 tips.success(json.errmsg, function () {
-                    location.href = '/';
+                    location.href = '/login';
                 });
             } else {
                 tips.error(json.errmsg, function () {
