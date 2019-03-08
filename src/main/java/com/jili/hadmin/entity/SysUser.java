@@ -14,8 +14,23 @@ public class SysUser implements Serializable {
     private Integer id;
     
     private String name;
+
     
     private String password;
+
+    private String perms;
+
+    private String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+
 
     public String getPerms() {
         return perms;
@@ -25,7 +40,7 @@ public class SysUser implements Serializable {
         this.perms = perms;
     }
 
-    private String perms;
+
 
 
     public Integer getId() {

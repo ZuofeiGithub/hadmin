@@ -24,6 +24,16 @@ public class SysMenu implements Serializable {
     //菜单类型（M目录 C菜单 ）
     private String menuType;
 
+    private Integer sort;
+
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
+    }
+
     public List<SysMenu> getList() {
         return list;
     }

@@ -2,6 +2,9 @@ package com.jili.hadmin.controller;
 
 import com.jili.hadmin.entity.SysMenu;
 import com.jili.hadmin.service.SysMenuService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -36,8 +39,19 @@ public class SysMenuController {
 
     @GetMapping("getMenuList")
     public Object getMenuList(){
+        Subject subject = SecurityUtils.getSubject();
         List<Object> list = new ArrayList<>();
-        list.add(sysMenuService.getMenuList());
+        List<SysMenu> sysMenus = new ArrayList<>();
+        if(subject.hasRole("ROLE_ADMIN")){
+            sysMenus = sysMenuService.getMenuList(1);
+        }else if(subject.hasRole("ROLE_USER")){
+            sysMenus = sysMenuService.getMenuList(2);
+        }
+        if(ObjectUtils.isEmpty(sysMenus)){
+            list.add(new ArrayList<>());
+        }
+        list.add(sysMenus);
+
         return list;
     }
 

@@ -1,9 +1,11 @@
 package com.jili.hadmin.config;
 
+import com.ibeetl.starter.BeetlTemplateCustomize;
 import com.jili.hadmin.author.UserRealm;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.beetl.core.GroupTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -61,5 +63,16 @@ public class ShiroConfig {
     @Bean
     public UserRealm userRealm(){
         return new UserRealm();
+    }
+
+
+    @Bean
+    public BeetlTemplateCustomize beetlTemplateCustomize(){
+        return new BeetlTemplateCustomize() {
+            @Override
+            public void customize(GroupTemplate groupTemplate) {
+                groupTemplate.registerFunctionPackage("so",new ShiroExt());
+            }
+        };
     }
 }

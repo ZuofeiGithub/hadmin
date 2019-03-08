@@ -1,16 +1,16 @@
 package com.jili.hadmin.dao;
 
-import com.jili.hadmin.entity.SysMenu;
+import com.jili.hadmin.entity.SysRole;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * 菜单权限表(SysMenu)表数据库访问层
+ * 角色表(SysRole)表数据库访问层
  *
  * @author makejava
- * @since 2019-03-08 13:24:58
+ * @since 2019-03-08 16:31:27
  */
-public interface SysMenuDao {
+public interface SysRoleDao {
 
     /**
      * 通过ID查询单条数据
@@ -18,10 +18,7 @@ public interface SysMenuDao {
      * @param id 主键
      * @return 实例对象
      */
-    SysMenu queryById(Integer id);
-
-
-    List<SysMenu> getMenuList(Integer roleId);
+    SysRole queryById(Integer id);
 
     /**
      * 查询指定行数据
@@ -30,32 +27,32 @@ public interface SysMenuDao {
      * @param limit 查询条数
      * @return 对象列表
      */
-    List<SysMenu> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
+    List<SysRole> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
 
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param sysMenu 实例对象
+     * @param sysRole 实例对象
      * @return 对象列表
      */
-    List<SysMenu> queryAll(SysMenu sysMenu);
+    List<SysRole> queryAll(SysRole sysRole);
 
     /**
      * 新增数据
      *
-     * @param sysMenu 实例对象
+     * @param sysRole 实例对象
      * @return 影响行数
      */
-    int insert(SysMenu sysMenu);
+    int insert(SysRole sysRole);
 
     /**
      * 修改数据
      *
-     * @param sysMenu 实例对象
+     * @param sysRole 实例对象
      * @return 影响行数
      */
-    int update(SysMenu sysMenu);
+    int update(SysRole sysRole);
 
     /**
      * 通过主键删除数据

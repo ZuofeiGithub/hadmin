@@ -12,6 +12,8 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @Author: 左飞
@@ -37,6 +39,10 @@ public class UserRealm extends AuthorizingRealm {
         Subject subject = SecurityUtils.getSubject();
         SysUser sysUser = (SysUser) subject.getPrincipal();
         SysUser dbUser = sysUserService.queryById(sysUser.getId());
+        Set<String> set = new HashSet<>();
+        set.add(dbUser.getRole());
+        //权限
+        info.setRoles(set);
         info.addStringPermission(dbUser.getPerms());
         return info;
     }

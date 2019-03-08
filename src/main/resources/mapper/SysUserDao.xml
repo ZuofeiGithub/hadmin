@@ -18,7 +18,7 @@
     </select>
     <select id="queryByUserName" resultMap="SysUserMap">
         select
-            id, name, password,perms
+            id, name, password,perms,role
         from spring_test.sys_user
         where name = #{username}
     </select>

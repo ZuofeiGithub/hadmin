@@ -44,6 +44,11 @@ public class FrontController {
         return URL.FORGOT;
     }
 
+    @GetMapping(value = "home")
+    public String home(){
+        return URL.HOME;
+    }
+
     /**
      *  文档
      */
@@ -64,7 +69,7 @@ public class FrontController {
 
     @GetMapping(value = "other")
     public String other(){
-        return URL.CHANGELOG;
+        return URL.OTHER;
     }
 
     @GetMapping(value = "quickstart")

@@ -31,8 +31,8 @@ public class SysMenuServiceImpl implements SysMenuService {
     }
 
     @Override
-    public List<SysMenu> getMenuList() {
-        return sysMenuDao.getMenuList();
+    public List<SysMenu> getMenuList(Integer roleId) {
+        return sysMenuDao.getMenuList(roleId);
     }
 
     /**
