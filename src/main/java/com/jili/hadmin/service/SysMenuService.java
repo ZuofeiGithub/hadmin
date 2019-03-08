@@ -1,15 +1,15 @@
 package com.jili.hadmin.service;
 
-import com.jili.hadmin.entity.SysUser;
+import com.jili.hadmin.entity.SysMenu;
 import java.util.List;
 
 /**
- * (SysUser)表服务接口
+ * 菜单权限表(SysMenu)表服务接口
  *
  * @author makejava
- * @since 2019-03-07 17:21:54
+ * @since 2019-03-08 13:24:58
  */
-public interface SysUserService {
+public interface SysMenuService {
 
     /**
      * 通过ID查询单条数据
@@ -17,16 +17,9 @@ public interface SysUserService {
      * @param id 主键
      * @return 实例对象
      */
-    SysUser queryById(Integer id);
+    SysMenu queryById(Integer id);
 
-
-    /**
-     * 通过UserName查询单条数据
-     *
-     * @param username 用户名
-     * @return 实例对象
-     */
-    SysUser queryByUserName(String username);
+    List<SysMenu> getMenuList();
 
     /**
      * 查询多条数据
@@ -35,23 +28,23 @@ public interface SysUserService {
      * @param limit 查询条数
      * @return 对象列表
      */
-    List<SysUser> queryAllByLimit(int offset, int limit);
+    List<SysMenu> queryAllByLimit(int offset, int limit);
 
     /**
      * 新增数据
      *
-     * @param sysUser 实例对象
+     * @param sysMenu 实例对象
      * @return 实例对象
      */
-    SysUser insert(SysUser sysUser);
+    SysMenu insert(SysMenu sysMenu);
 
     /**
      * 修改数据
      *
-     * @param sysUser 实例对象
+     * @param sysMenu 实例对象
      * @return 实例对象
      */
-    SysUser update(SysUser sysUser);
+    SysMenu update(SysMenu sysMenu);
 
     /**
      * 通过主键删除数据

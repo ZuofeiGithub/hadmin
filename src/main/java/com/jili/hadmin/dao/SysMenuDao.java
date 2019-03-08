@@ -1,19 +1,16 @@
 package com.jili.hadmin.dao;
 
-import com.jili.hadmin.entity.SysUser;
+import com.jili.hadmin.entity.SysMenu;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 /**
- * (SysUser)表数据库访问层
+ * 菜单权限表(SysMenu)表数据库访问层
  *
  * @author makejava
- * @since 2019-03-07 17:21:53
+ * @since 2019-03-08 13:24:58
  */
-@Component
-public interface SysUserDao {
+public interface SysMenuDao {
 
     /**
      * 通过ID查询单条数据
@@ -21,9 +18,10 @@ public interface SysUserDao {
      * @param id 主键
      * @return 实例对象
      */
-    SysUser queryById(Integer id);
+    SysMenu queryById(Integer id);
 
-    SysUser queryByUserName(String username);
+
+    List<SysMenu> getMenuList();
 
     /**
      * 查询指定行数据
@@ -32,32 +30,32 @@ public interface SysUserDao {
      * @param limit 查询条数
      * @return 对象列表
      */
-    List<SysUser> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
+    List<SysMenu> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
 
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param sysUser 实例对象
+     * @param sysMenu 实例对象
      * @return 对象列表
      */
-    List<SysUser> queryAll(SysUser sysUser);
+    List<SysMenu> queryAll(SysMenu sysMenu);
 
     /**
      * 新增数据
      *
-     * @param sysUser 实例对象
+     * @param sysMenu 实例对象
      * @return 影响行数
      */
-    int insert(SysUser sysUser);
+    int insert(SysMenu sysMenu);
 
     /**
      * 修改数据
      *
-     * @param sysUser 实例对象
+     * @param sysMenu 实例对象
      * @return 影响行数
      */
-    int update(SysUser sysUser);
+    int update(SysMenu sysMenu);
 
     /**
      * 通过主键删除数据

@@ -1,15 +1,15 @@
 package com.jili.hadmin.service;
 
-import com.jili.hadmin.entity.SysUser;
+import com.jili.hadmin.entity.UserInfo;
 import java.util.List;
 
 /**
- * (SysUser)表服务接口
+ * 用户表(UserInfo)表服务接口
  *
  * @author makejava
- * @since 2019-03-07 17:21:54
+ * @since 2019-03-08 13:09:33
  */
-public interface SysUserService {
+public interface UserInfoService {
 
     /**
      * 通过ID查询单条数据
@@ -17,16 +17,7 @@ public interface SysUserService {
      * @param id 主键
      * @return 实例对象
      */
-    SysUser queryById(Integer id);
-
-
-    /**
-     * 通过UserName查询单条数据
-     *
-     * @param username 用户名
-     * @return 实例对象
-     */
-    SysUser queryByUserName(String username);
+    UserInfo queryById(Integer id);
 
     /**
      * 查询多条数据
@@ -35,23 +26,23 @@ public interface SysUserService {
      * @param limit 查询条数
      * @return 对象列表
      */
-    List<SysUser> queryAllByLimit(int offset, int limit);
+    List<UserInfo> queryAllByLimit(int offset, int limit);
 
     /**
      * 新增数据
      *
-     * @param sysUser 实例对象
+     * @param userInfo 实例对象
      * @return 实例对象
      */
-    SysUser insert(SysUser sysUser);
+    UserInfo insert(UserInfo userInfo);
 
     /**
      * 修改数据
      *
-     * @param sysUser 实例对象
+     * @param userInfo 实例对象
      * @return 实例对象
      */
-    SysUser update(SysUser sysUser);
+    UserInfo update(UserInfo userInfo);
 
     /**
      * 通过主键删除数据

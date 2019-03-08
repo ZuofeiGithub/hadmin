@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jili.hadmin.dao.SysMenuDao">
+
+    <resultMap type="com.jili.hadmin.entity.SysMenu" id="SysMenuMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+        <result property="href" column="href" jdbcType="VARCHAR"/>
+        <result property="icon" column="icon" jdbcType="VARCHAR"/>
+        <result property="menuType" column="menu_type" jdbcType="VARCHAR"/>
+        <collection column="id" property="list" ofType="com.jili.hadmin.entity.SysMenu"
+                    javaType="java.util.ArrayList"
+                    select="selectChildMenuById"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="SysMenuMap">
+        select
+            id,
+            title,
+            parent_id,
+            href,
+            icon,
+            menu_type
+        from catshopkeeper.sys_menu
+        where id = #{id}
+    </select>
+    <!--查询菜单根级目录-->
+    <select id="getMenuList" resultMap="SysMenuMap">
+        select
+            id,
+            title,
+            parent_id,
+            href,
+            icon,
+            menu_type
+        from catshopkeeper.sys_menu
+        where parent_id = 0
+    </select>
+    
+    <select id="selectChildMenuById" resultMap="SysMenuMap" parameterType="Integer">
+        select
+            id,
+            title,
+            parent_id,
+            href,
+            icon,
+            menu_type
+        from catshopkeeper.sys_menu
+        where parent_id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="SysMenuMap">
+        select
+            id,
+            title,
+            parent_id,
+            href,
+            icon,
+            menu_type
+        from catshopkeeper.sys_menu limit
+             #{offset},
+             #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="SysMenuMap">
+        select
+        id, title, parent_id, href, icon, menu_type
+        from catshopkeeper.sys_menu
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="menuName != null and menuName != ''">
+                and title = #{menuName}
+            </if>
+            <if test="parentId != null">
+                and parent_id = #{parentId}
+            </if>
+            <if test="href != null and href != ''">
+                and href = #{href}
+            </if>
+            <if test="icon != null and icon != ''">
+                and icon = #{icon}
+            </if>
+            <if test="menuType != null and menuType != ''">
+                and menu_type = #{menuType}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into catshopkeeper.sys_menu(title, parent_id, href, icon, menu_type)
+        values (#{menuName}, #{parentId}, #{href}, #{icon}, #{menuType})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update catshopkeeper.sys_menu
+        <set>
+            <if test="menuName != null and menuName != ''">
+                title = #{menuName},
+            </if>
+            <if test="parentId != null">
+                parent_id = #{parentId},
+            </if>
+            <if test="href != null and href != ''">
+                href = #{href},
+            </if>
+            <if test="icon != null and icon != ''">
+                icon = #{icon},
+            </if>
+            <if test="menuType != null and menuType != ''">
+                menu_type = #{menuType},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from catshopkeeper.sys_menu
+        where id = #{id}
+    </delete>
+
+</mapper>

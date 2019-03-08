@@ -17,6 +17,16 @@ public class SysUser implements Serializable {
     
     private String password;
 
+    public String getPerms() {
+        return perms;
+    }
+
+    public void setPerms(String perms) {
+        this.perms = perms;
+    }
+
+    private String perms;
+
 
     public Integer getId() {
         return id;

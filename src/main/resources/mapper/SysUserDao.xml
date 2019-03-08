@@ -6,20 +6,27 @@
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="perms" column="perms" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="SysUserMap">
         select
-          id, name, password
+          id, name, password,perms
         from spring_test.sys_user
         where id = #{id}
+    </select>
+    <select id="queryByUserName" resultMap="SysUserMap">
+        select
+            id, name, password,perms
+        from spring_test.sys_user
+        where name = #{username}
     </select>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="SysUserMap">
         select
-          id, name, password
+          id, name, password,perms
         from spring_test.sys_user
         limit #{offset}, #{limit}
     </select>
@@ -27,7 +34,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="SysUserMap">
         select
-          id, name, password
+          id, name, password,perms
         from spring_test.sys_user
         <where>
             <if test="id != null">

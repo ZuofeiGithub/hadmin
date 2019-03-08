@@ -30,6 +30,11 @@ public class SysUserServiceImpl implements SysUserService {
         return this.sysUserDao.queryById(id);
     }
 
+    @Override
+    public SysUser queryByUserName(String username) {
+        return this.sysUserDao.queryByUserName(username);
+    }
+
     /**
      * 查询多条数据
      *
