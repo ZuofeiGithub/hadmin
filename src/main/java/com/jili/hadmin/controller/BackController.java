@@ -1,17 +1,24 @@
 package com.jili.hadmin.controller;
 
-import com.jili.hadmin.constant.URL;
+import com.jili.hadmin.entity.SysUser;
 import com.jili.hadmin.json.BaseResp;
 import com.jili.hadmin.json.LoginResp;
+import com.jili.hadmin.service.SysUserService;
+import com.jili.hadmin.utils.MD5Util;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * @Author: 左飞
@@ -21,6 +28,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping(value = "backapi")
 public class BackController {
+    @Resource
+    private SysUserService sysUserService;
 
     @PostMapping(value = "/login")
     @ResponseBody
@@ -34,7 +43,12 @@ public class BackController {
         //2.封装用户数据
         UsernamePasswordToken token = new UsernamePasswordToken();
         token.setUsername(username);
-        token.setPassword(password.toCharArray());
+
+        SysUser user = sysUserService.queryByUserName(username);
+        if(!ObjectUtils.isEmpty(user)){
+            String md5Pwd = MD5Util.salt_md5(password,user.getSalt());
+            token.setPassword(md5Pwd.toCharArray());
+        }
         //3.执行登陆方法
         try {
             subject.login(token);

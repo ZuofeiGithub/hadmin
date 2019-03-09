@@ -1,6 +1,9 @@
 package com.jili.hadmin.controller;
 
+import com.jili.hadmin.entity.RoleUser;
 import com.jili.hadmin.entity.SysMenu;
+import com.jili.hadmin.entity.SysUser;
+import com.jili.hadmin.service.RoleUserService;
 import com.jili.hadmin.service.SysMenuService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -25,6 +28,8 @@ public class SysMenuController {
      */
     @Resource
     private SysMenuService sysMenuService;
+    @Resource
+    private RoleUserService roleUserService;
 
     /**
      * 通过主键查询单条数据

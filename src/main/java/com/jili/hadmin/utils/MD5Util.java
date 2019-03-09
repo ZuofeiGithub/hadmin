@@ -3,6 +3,9 @@ package com.jili.hadmin.utils;
  * MD5加密验证
  */
 
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.util.ByteSource;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -165,8 +168,16 @@ public class MD5Util {
     private static final String hexDigits[] = {"0", "1", "2", "3", "4", "5",
             "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
 
-	/*public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-		String pwd = getEncryptedPwd("111111");
-		System.out.println(pwd);
-	}*/
+    public static final String salt_md5(String password, String salt){
+        //加密方式
+        String hashAlgorithmName = "MD5";
+        //盐：为了即使相同的密码不同的盐加密后的结果也不同
+        ByteSource byteSalt = ByteSource.Util.bytes(salt);
+        //密码
+        Object source = password;
+        //加密次数
+        int hashIterations = 1024;
+        SimpleHash result = new SimpleHash(hashAlgorithmName, source, byteSalt, hashIterations);
+        return result.toString();
+    }
 }
