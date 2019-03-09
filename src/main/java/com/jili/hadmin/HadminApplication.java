@@ -1,7 +1,5 @@
 package com.jili.hadmin;
 
-import com.jili.hadmin.config.ShiroExt;
-import org.beetl.core.GroupTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

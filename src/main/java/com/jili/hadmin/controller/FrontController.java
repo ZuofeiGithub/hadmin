@@ -49,6 +49,11 @@ public class FrontController {
         return URL.HOME;
     }
 
+    @GetMapping(value = "lmenu")
+    public String lmenu(){
+        return URL.LMENU;
+    }
+
     /**
      *  文档
      */

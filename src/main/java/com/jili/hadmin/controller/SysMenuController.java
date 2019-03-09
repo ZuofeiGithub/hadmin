@@ -3,6 +3,7 @@ package com.jili.hadmin.controller;
 import com.jili.hadmin.entity.RoleUser;
 import com.jili.hadmin.entity.SysMenu;
 import com.jili.hadmin.entity.SysUser;
+import com.jili.hadmin.json.ErrorMsg;
 import com.jili.hadmin.service.RoleUserService;
 import com.jili.hadmin.service.SysMenuService;
 import org.apache.shiro.SecurityUtils;
@@ -44,9 +45,10 @@ public class SysMenuController {
 
     @GetMapping("getMenuList")
     public Object getMenuList(){
-        Subject subject = SecurityUtils.getSubject();
         List<Object> list = new ArrayList<>();
         List<SysMenu> sysMenus = new ArrayList<>();
+
+        Subject subject = SecurityUtils.getSubject();
         if(subject.hasRole("ROLE_ADMIN")){
             sysMenus = sysMenuService.getMenuList(1);
         }else if(subject.hasRole("ROLE_USER")){
@@ -58,6 +60,30 @@ public class SysMenuController {
         list.add(sysMenus);
 
         return list;
+    }
+
+    @PostMapping("addMenu")
+    public Object addMenu(String title,Integer parent_id,String href,String icon,String menu_type,Integer sort){
+        ErrorMsg msg = new ErrorMsg();
+        Subject subject = SecurityUtils.getSubject();
+        if(subject.hasRole("ROLE_ADMIN")){
+            msg.setErrmsg("添加菜单");
+            msg.setErrcode(0);
+            SysMenu menu = new SysMenu();
+            menu.setTitle(title);
+            menu.setHref(href);
+            menu.setParentId(parent_id);
+            menu.setIcon(icon);
+            menu.setMenuType(menu_type);
+            menu.setSort(sort);
+            msg.setData(this.sysMenuService.insert(menu));
+        }else{
+            msg.setData(null);
+            msg.setErrcode(200);
+            msg.setErrmsg("您没有添加的权限");
+        }
+        return msg;
+
     }
 
 }
