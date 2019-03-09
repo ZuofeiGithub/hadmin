@@ -15,7 +15,7 @@ public class URL {
     public static final String ERROR = LYINGPREFIX + "error.html";
     public static final String REGISTER = LYINGPREFIX + "register.html";
     public static final String HOME = LYINGPREFIX + "home.html";
-    public static final String LMENU = LYINGPREFIX + "menu1.html";
+    public static final String LMENU = LYINGPREFIX + "menu.html";
 
     private static final String DOCPREFIX = "lying/doc/";
     public static final String CHANGELOG = DOCPREFIX + "changelog.html";
