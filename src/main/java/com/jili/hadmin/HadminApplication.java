@@ -12,8 +12,6 @@ public class HadminApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(HadminApplication.class, args);
-        GroupTemplate gt = new GroupTemplate();
-        gt.registerFunctionPackage("so", new ShiroExt());
     }
 
 }
