@@ -33,7 +33,7 @@ public class BackController {
 
     @PostMapping(value = "/login")
     @ResponseBody
-    public BaseResp login(String username, String password){
+    public BaseResp login(String username, String password,boolean rememberMe){
         /**
          * 使用Shiro编写认证操作
          */
@@ -49,6 +49,7 @@ public class BackController {
             String md5Pwd = MD5Util.salt_md5(password,user.getSalt());
             token.setPassword(md5Pwd.toCharArray());
         }
+        token.setRememberMe(rememberMe);
         //3.执行登陆方法
         try {
             subject.login(token);

@@ -7,7 +7,9 @@ layui.define(['layer', 'form', 'tips'], function(exports) {
     //刷新验证码
     var captchaImg = $('.lau-sign-captcha'), captchaSrc = captchaImg.attr('src');
     captchaImg.click(function () {
-        $(this).attr('src', captchaSrc + '?_t=' + Math.random());
+        var random = Math.random();
+        $(this).attr('src', captchaSrc + '?_t=' + random);
+        console.log(random)
     });
 
     //ajax请求出错提示
