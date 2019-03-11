@@ -4,6 +4,8 @@ import com.jili.hadmin.constant.URL;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 前端页面
  */
@@ -15,7 +17,9 @@ public class FrontController {
         return URL.ADMIN;
     }
     @GetMapping(value = "login")
-    public String login(){
+    public String login(HttpServletRequest request){
+        request.setAttribute("title","猫掌柜后台");
+        request.setAttribute("desc","用户管理人脸识别设备的系统");
         return URL.LOGIN;
     }
 
@@ -35,7 +39,10 @@ public class FrontController {
     }
 
     @GetMapping(value = "register")
-    public String register(){
+    public String register(HttpServletRequest request){
+        request.setAttribute("title","猫掌柜后台");
+        request.setAttribute("desc","用户管理人脸识别设备的系统");
+        request.setAttribute("agreement","《猫掌柜用户注册协议》");
         return URL.REGISTER;
     }
 

@@ -168,6 +168,15 @@ public class MD5Util {
     private static final String hexDigits[] = {"0", "1", "2", "3", "4", "5",
             "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
 
+
+    public static final String getSalt(){
+        SecureRandom random = new SecureRandom();
+        byte[] salt = new byte[SALT_LENGTH];
+        // 将随机数放入盐变量中
+        random.nextBytes(salt);
+        return salt.toString();
+    }
+
     public static final String salt_md5(String password, String salt){
         //加密方式
         String hashAlgorithmName = "MD5";

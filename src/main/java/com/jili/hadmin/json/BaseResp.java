@@ -1,30 +1,26 @@
 package com.jili.hadmin.json;
 
-import lombok.Data;
-
 /**
  * @Author: 左飞
  * @Date: 2019/3/8 9:57
  * @Version 1.0
  */
-@Data
 public class BaseResp {
+    int errcode;
+    String errmsg;
     public int getErrcode() {
         return errcode;
     }
-
-    public void setErrcode(int errcode) {
+    public BaseResp setErrcode(int errcode) {
         this.errcode = errcode;
+        return this;
     }
-
     public String getErrmsg() {
         return errmsg;
     }
 
-    public void setErrmsg(String errmsg) {
+    public BaseResp setErrmsg(String errmsg) {
         this.errmsg = errmsg;
+        return this;
     }
-
-    int errcode;
-    String errmsg;
 }

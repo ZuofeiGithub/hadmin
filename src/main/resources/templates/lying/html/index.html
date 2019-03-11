@@ -65,6 +65,24 @@
             layer = layui.layer,
             $ = layui.$;
 
+        if("WebSocket" in window){
+            var websocket = new WebSocket("ws://localhost/websocket");
+            websocket.onopen = function (ev) {
+                console.log("连接成功")
+            }
+            websocket.onclose = function (ev) {
+                console.log("连接关闭")
+            }
+            websocket.onerror = function (ev) {
+                console.log("连接错误")
+            }
+            websocket.onmessage = function (ev) {
+                console.log("我是服务端消息:"+ev.data)
+            }
+        }else{
+            console.log("Not support websocket");
+            return false;
+        }
         //监听事件,这个不一定要用lau-event,可以自己写
         $(document).on('click', '[lau-event]', function () {
             var _this = $(this);

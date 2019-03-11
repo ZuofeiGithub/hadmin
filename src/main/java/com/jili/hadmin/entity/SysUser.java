@@ -28,48 +28,54 @@ public class SysUser implements Serializable {
         return id;
     }
 
-    public void setId(Integer id) {
+    public SysUser setId(Integer id) {
         this.id = id;
+        return this;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public SysUser setUsername(String username) {
         this.username = username;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public SysUser setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     public Integer getBusinessid() {
         return businessid;
     }
 
-    public void setBusinessid(Integer businessid) {
+    public SysUser setBusinessid(Integer businessid) {
         this.businessid = businessid;
+        return this;
     }
 
     public String getImgurl() {
         return imgurl;
     }
 
-    public void setImgurl(String imgurl) {
+    public SysUser setImgurl(String imgurl) {
         this.imgurl = imgurl;
+        return this;
     }
 
     public String getSalt() {
         return salt;
     }
 
-    public void setSalt(String salt) {
+    public SysUser setSalt(String salt) {
         this.salt = salt;
+        return this;
     }
 
 }

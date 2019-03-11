@@ -43,6 +43,7 @@ layui.define(['layer', 'form', 'tips'], function(exports) {
                 tips.success(json.errmsg, function () {
                     location.href = '/admin';
                 });
+
             } else {
                 tips.error(json.errmsg, function () {
                     captchaImg.attr('src', captchaSrc + '?_t=' + Math.random());

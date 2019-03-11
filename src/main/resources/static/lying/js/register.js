@@ -28,7 +28,7 @@ layui.define(['layer', 'form', 'tips'], function(exports) {
 
         var that = $(this);
         that.attr('disabled', true).addClass('layui-btn-disabled');
-        $.post('/json/sms.json', {phone: phone}, function (json) {
+        $.post('/backapi/verifycode', {phone: phone}, function (json) {
             if (json.errcode == 0) {
                 tips.success(json.errmsg);
                 var expire = json.data.expire;
@@ -99,10 +99,10 @@ layui.define(['layer', 'form', 'tips'], function(exports) {
         tips.loading('注册中...', 0, -1);
 
         //发送注册表单
-        $.post('/json/register.json', data.field, function (json) {
+        $.post('/backapi/register', data.field, function (json) {
             if (json.errcode == 0) {
                 tips.success(json.errmsg, function () {
-                    location.href = '/html/login.html';
+                    location.href = '/login';
                 });
             } else {
                 tips.error(json.errmsg, function () {
