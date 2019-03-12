@@ -14,10 +14,10 @@
 <table class="layui-hide" id="test" lay-filter="test"></table>
 
 <script type="text/html" id="toolbarDemo">
-    <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-        <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+    <div class="layui-btn-group">
+        <button class="layui-btn layui-btn-sm  layui-btn-danger" lay-event="getCheckData">添加</button>
+        <button class="layui-btn layui-btn-sm  layui-btn-danger" lay-event="getCheckLength">修改</button>
+        <button class="layui-btn layui-btn-sm  layui-btn-danger" lay-event="isAll">删除</button>
     </div>
 </script>
 
@@ -27,12 +27,78 @@
 </script>
 
 
+<script type="text/html" id="formId">
+    <form class="layui-form" style="padding: 100px" action="">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">验证手机</label>
+                <div class="layui-input-inline">
+                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">验证邮箱</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">验证手机</label>
+                <div class="layui-input-inline">
+                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">验证邮箱</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">验证手机</label>
+                <div class="layui-input-inline">
+                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">验证邮箱</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">验证手机</label>
+                <div class="layui-input-inline">
+                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">验证邮箱</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+    </form>
+</script>
+
+
 <script src="/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 
 <script>
     layui.use('table', function(){
-        var table = layui.table;
+        var table = layui.table,
+        $ = layui.$;
+
+
+
 
         table.render({
             elem: '#test'
@@ -61,11 +127,11 @@
         //头工具栏事件
         table.on('toolbar(test)', function(obj){
             var checkStatus = table.checkStatus(obj.config.id);
-            console.log("事件被触发");
             switch(obj.event){
                 case 'getCheckData':
-                    var data = checkStatus.data;
-                    layer.alert(JSON.stringify(data));
+                    // var data = checkStatus.data;
+                    // layer.alert(JSON.stringify(data));
+                    add();
                     break;
                 case 'getCheckLength':
                     var data = checkStatus.data;
@@ -76,6 +142,29 @@
                     break;
             };
         });
+        var win = null;
+        function add(){
+         win  = layer.open({
+                title:'',
+                type:1,
+                content:$('#formId').html(),
+                area:['600px','500px']
+            })
+        }
+
+        $(window).resize(function (e) {
+            win.width = 900;
+            win.height = 800;
+        })
+
+        function modify(){
+
+        }
+
+        function del(){
+
+        }
+
 
         //监听行工具事件
         table.on('tool(test)', function(obj){

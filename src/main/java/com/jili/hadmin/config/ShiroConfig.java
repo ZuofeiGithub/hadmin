@@ -2,13 +2,19 @@ package com.jili.hadmin.config;
 
 import com.ibeetl.starter.BeetlTemplateCustomize;
 import com.jili.hadmin.author.UserRealm;
+import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.servlet.SimpleCookie;
 import org.beetl.core.GroupTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import java.security.NoSuchAlgorithmException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -54,6 +60,8 @@ public class ShiroConfig {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         //管理realm
         securityManager.setRealm(userRealm());
+        //注入Cookie(记住我)管理器(remenberMeManager)
+        securityManager.setRememberMeManager(rememberMeManager());
         return securityManager;
     }
 
@@ -65,6 +73,34 @@ public class ShiroConfig {
         return new UserRealm();
     }
 
+    @Bean
+    public CookieRememberMeManager rememberMeManager(){
+        CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
+        //rememberme cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度（128 256 512 位），通过以下代码可以获取
+        try {
+            KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+            SecretKey deskey = keyGenerator.generateKey();
+            byte[] cipherKey = Base64.decode(deskey.getEncoded());
+            cookieRememberMeManager.setCipherKey(cipherKey);
+            cookieRememberMeManager.setCookie(rememberMeCookie());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        return cookieRememberMeManager;
+    }
+
+    @Bean
+    public SimpleCookie rememberMeCookie(){
+        //这个参数是cookie的名称，对应前端的checkbox的name = rememberMe
+        SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
+        //如果httyOnly设置为true，则客户端不会暴露给客户端脚本代码，使用HttpOnly cookie有助于减少某些类型的跨站点脚本攻击；
+        simpleCookie.setHttpOnly(true);
+        //记住我cookie生效时间,默认30天 ,单位秒：60 * 60 * 24 * 30
+        simpleCookie.setMaxAge(259200);
+
+        return simpleCookie;
+    }
 
     @Bean
     public BeetlTemplateCustomize beetlTemplateCustomize(){

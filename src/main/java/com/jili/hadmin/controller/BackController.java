@@ -15,13 +15,11 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -65,6 +63,7 @@ public class BackController {
         //3.执行登陆方法
         try {
             subject.login(token);
+
             //登陆成功
             resp.setErrcode(0).setErrmsg("登陆成功");
         }catch (UnknownAccountException e){
@@ -76,9 +75,13 @@ public class BackController {
             //密码错误
             resp.setErrcode(300).setErrmsg("密码错误");
         }
-
         return resp;
     }
+
+
+
+
+
 
     @PostMapping("/verifycode")
     @ResponseBody
@@ -118,7 +121,7 @@ public class BackController {
 
     @PostMapping("/register")
     @ResponseBody
-    public BaseResp register(HttpSession session,String phone, String code, String password,String captcha){
+    public BaseResp register(HttpSession session, String phone, String code, String password, String captcha){
         BaseResp resp = new BaseResp();
         String random = (String) session.getAttribute("RANDOMVALIDATECODEKEY");
         if(!ObjectUtils.isEmpty(phone)&&!ObjectUtils.isEmpty(code)&&!ObjectUtils.isEmpty(password)&&!ObjectUtils.isEmpty(captcha)&&!ObjectUtils.isEmpty(random)) {

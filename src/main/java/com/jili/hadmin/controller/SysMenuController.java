@@ -1,15 +1,16 @@
 package com.jili.hadmin.controller;
 
-import com.jili.hadmin.entity.RoleUser;
 import com.jili.hadmin.entity.SysMenu;
-import com.jili.hadmin.entity.SysUser;
 import com.jili.hadmin.json.ErrorMsg;
 import com.jili.hadmin.service.RoleUserService;
 import com.jili.hadmin.service.SysMenuService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
