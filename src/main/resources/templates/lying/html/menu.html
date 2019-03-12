@@ -28,7 +28,7 @@
 
 
 <script type="text/html" id="formId">
-    <form class="layui-form" style="padding: 100px" action="">
+    <form class="layui-form" style="margin-top: 50px" action="">
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">验证手机</label>
@@ -85,6 +85,7 @@
                 </div>
             </div>
         </div>
+        <button type="submit" class="layui-btn layui-btn-normal">提交</button>
     </form>
 </script>
 
@@ -145,17 +146,12 @@
         var win = null;
         function add(){
          win  = layer.open({
-                title:'',
+                title:'添加菜单',
                 type:1,
                 content:$('#formId').html(),
-                area:['600px','500px']
+                area:['900px','600px']
             })
         }
-
-        $(window).resize(function (e) {
-            win.width = 900;
-            win.height = 800;
-        })
 
         function modify(){
 
