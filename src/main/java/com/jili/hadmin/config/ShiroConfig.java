@@ -44,11 +44,11 @@ public class ShiroConfig {
         //修改跳转地址
         shiroFilterFactoryBean.setLoginUrl("/login");
 //        //授权过滤器
-//        filterMap.put("/admin","perms[ROLE_ADMIN]");
+        filterMap.put("/admin","perms[ROLE_ADMIN]");
         //设置未授权提示页面
 //        shiroFilterFactoryBean.setUnauthorizedUrl("about");
         filterMap.put("/login","anon");
-        filterMap.put("/admin","authc");
+      //  filterMap.put("/admin","authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
         return shiroFilterFactoryBean;
     }

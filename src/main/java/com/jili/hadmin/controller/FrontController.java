@@ -61,6 +61,11 @@ public class FrontController {
         return URL.LMENU;
     }
 
+    @GetMapping(value = "treetable")
+    public String treetable(){
+        return URL.TREETABLE;
+    }
+
     /**
      *  文档
      */

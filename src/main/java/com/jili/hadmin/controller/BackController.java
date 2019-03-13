@@ -1,12 +1,14 @@
 package com.jili.hadmin.controller;
 
 import com.aliyuncs.exceptions.ClientException;
+import com.jili.hadmin.annotation.UserLoginToken;
 import com.jili.hadmin.entity.SysUser;
 import com.jili.hadmin.json.BaseResp;
 import com.jili.hadmin.json.LoginResp;
 import com.jili.hadmin.json.RegisterData;
 import com.jili.hadmin.json.RegisterResp;
 import com.jili.hadmin.service.SysUserService;
+import com.jili.hadmin.service.TokenService;
 import com.jili.hadmin.utils.MD5Util;
 import com.jili.hadmin.utils.RandomValidateCodeUtil;
 import com.jili.hadmin.utils.RedisService;
@@ -17,6 +19,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,6 +45,9 @@ public class BackController {
     @Resource
     RedisService redisService;
 
+    @Resource
+    TokenService tokenService;
+
     @PostMapping(value = "/login")
     @ResponseBody
     public BaseResp login(String username, String password,boolean rememberMe){
@@ -63,9 +69,10 @@ public class BackController {
         //3.执行登陆方法
         try {
             subject.login(token);
-
             //登陆成功
             resp.setErrcode(0).setErrmsg("登陆成功");
+            String access_token = tokenService.getToken(user);
+            System.out.println(access_token);
         }catch (UnknownAccountException e){
             //e.printStackTrace();
             //登陆失败
@@ -76,6 +83,13 @@ public class BackController {
             resp.setErrcode(300).setErrmsg("密码错误");
         }
         return resp;
+    }
+
+    @GetMapping("getmessage")
+    @UserLoginToken
+    @ResponseBody
+    public String getMessage() {
+        return "通过验证";
     }
 
 
