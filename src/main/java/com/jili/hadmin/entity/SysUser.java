@@ -24,6 +24,10 @@ public class SysUser implements Serializable {
     private String salt;
 
 
+
+    private String token;
+
+
     public Integer getId() {
         return id;
     }
@@ -78,4 +82,17 @@ public class SysUser implements Serializable {
         return this;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+
+    public String getToken() {
+        return token;
+    }
+
+    public SysUser setToken(String token) {
+        this.token = token;
+        return this;
+    }
 }

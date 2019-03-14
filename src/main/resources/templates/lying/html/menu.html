@@ -56,74 +56,6 @@
 </script>
 
 
-<script type="text/html" id="formId">
-    <form class="layui-form" style="margin-top: 50px" action="">
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">验证手机</label>
-                <div class="layui-input-inline">
-                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">验证邮箱</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">验证手机</label>
-                <div class="layui-input-inline">
-                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">验证邮箱</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">验证手机</label>
-                <div class="layui-input-inline">
-                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">验证邮箱</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">验证手机</label>
-                <div class="layui-input-inline">
-                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">验证邮箱</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <input type="submit" class="layui-btn layui-btn-normal" />
-            </div>
-        </div>
-
-
-    </form>
-</script>
-
 
 <script src="/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
@@ -131,8 +63,9 @@
 <script>
     layui.config({
         base: 'lying/',
-    }).extend({treeTable:'js/treeTable'}).use(['treeTable','layer','code','form'],function(){
+    }).extend({treeTable:'js/treeTable'}).use(['treeTable','layer','code'],function(){
         var treeTable = layui.treeTable,
+            layer = layui.layer,
         $ = layui.$;
         var	re = treeTable.render({
             elem: '#menuTable'
@@ -192,8 +125,8 @@
         function add(){
          layer.open({
                 title:'添加菜单',
-                type:1,
-                content:$('#formId').html(),
+                type:2,
+                content:'/add',
                 area:['900px','600px']
             })
         }

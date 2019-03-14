@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加</title>
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/lying/css/menu.css">
+</head>
+<body>
+<form class="layui-form" style="margin-top: 50px;margin-left: 100px;" action="">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">名称<span style="color: red;margin-left: 5px">*</span></label>
+            <div class="layui-input-inline">
+                <input type="text" name="title" lay-verify="required|title" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item" pane="">
+        <div class="layui-inline">
+            <label class="layui-form-label">是否为主菜单<span style="color: red;margin-left: 5px">*</span></label>
+            <div class="layui-input-block">
+                <input type="radio" name="mainmenu" lay-filter="mainmenu" lay-skin="primary" value="1" title="是" checked="">
+                <input type="radio" name="mainmenu" lay-filter="mainmenu" lay-skin="primary" value="0" title="否">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">主菜单<span style="color: red;margin-left: 5px">*</span></label>
+            <div class="layui-input-block">
+                <select name="interest" id="proNos" lay-filter="aihao">
+                    <option value=""></option>
+                    <option value="0">写作</option>
+                    <option value="1">阅读</option>
+                    <option value="2">游戏</option>
+                    <option value="3">音乐</option>
+                    <option value="4">旅行</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <input type="submit" class="layui-btn layui-btn-normal"/>
+        </div>
+    </div>
+</form>
+</body>
+<script src="/layui/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['form'], function () {
+        var form = layui.form,
+            $ = layui.$;
+
+        var resultData;
+
+        var htmls = '<option value="">请选择</option>'; //全局变量
+        $.ajax({
+            url: '/json/select.json',
+            type: "get",
+            dataType: "json",
+            contentType: "application/json",
+            async: false,//这得注意是同步
+            success: function (result) {
+                resultData = result.data;
+                console.log(result);
+                for (var x in resultData) {
+                    htmls += '<option value = "' + resultData[x].id + '">' + resultData[x].proNo + '</option>'
+                }
+                $("#proNos").html(htmls);
+            }
+        });
+        form.render('select');//需要渲染一下
+
+        form.on('radio(mainmenu)',function (data) {
+           if(data.value == "0"){
+               $("#proNos").removeClass("layui-disabled");
+           }else{
+               $("#proNos").addClass("layui-disabled");
+           }
+        })
+    })
+</script>
+</html>

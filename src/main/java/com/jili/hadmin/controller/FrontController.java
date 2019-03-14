@@ -66,6 +66,16 @@ public class FrontController {
         return URL.TREETABLE;
     }
 
+    @GetMapping(value = "treeselect")
+    public String treeselect(){
+        return URL.TREESELECT;
+    }
+
+    @GetMapping(value = "add")
+    public String add(){
+        return URL.ADD;
+    }
+
     /**
      *  文档
      */

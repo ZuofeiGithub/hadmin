@@ -70,9 +70,12 @@ public class BackController {
         try {
             subject.login(token);
             //登陆成功
-            resp.setErrcode(0).setErrmsg("登陆成功");
             String access_token = tokenService.getToken(user);
-            System.out.println(access_token);
+            SysUser sysUser = new SysUser();
+            sysUser.setUsername(username);
+            sysUser.setToken(access_token);
+            sysUserService.update(sysUser);
+            resp.setErrcode(0).setErrmsg("登陆成功").setToken(access_token);
         }catch (UnknownAccountException e){
             //e.printStackTrace();
             //登陆失败
@@ -84,6 +87,7 @@ public class BackController {
         }
         return resp;
     }
+
 
     @GetMapping("getmessage")
     @UserLoginToken

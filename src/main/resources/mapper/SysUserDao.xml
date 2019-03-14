@@ -14,7 +14,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="SysUserMap">
         select
-          id, username, password, businessId, imgUrl, salt
+          id, username, password, businessId, imgUrl, salt,token
         from catshopkeeper.sys_user
         where id = #{id}
     </select>
@@ -22,7 +22,7 @@
     <!--查询单个-->
     <select id="queryByUserName" resultMap="SysUserMap">
         select
-            id, username, password, businessId, imgUrl,salt
+            id, username, password, businessId, imgUrl,salt,token
         from catshopkeeper.sys_user
         where username = #{username}
     </select>
@@ -30,7 +30,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="SysUserMap">
         select
-          id, username, password, businessId, imgUrl, salt
+          id, username, password, businessId, imgUrl, salt,token
         from catshopkeeper.sys_user
         limit #{offset}, #{limit}
     </select>
@@ -38,7 +38,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="SysUserMap">
         select
-          id, username, password, businessId, imgUrl, salt
+          id, username, password, businessId, imgUrl, salt,token
         from catshopkeeper.sys_user
         <where>
             <if test="id != null">
@@ -59,13 +59,16 @@
             <if test="salt != null and salt != ''">
                 and salt = #{salt}
             </if>
+            <if test="token != null and token != ''">
+                and token = #{token}
+            </if>
         </where>
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into catshopkeeper.sys_user(username, password, businessId, imgUrl, salt)
-        values (#{username}, #{password}, #{businessid}, #{imgurl}, #{salt})
+        insert into catshopkeeper.sys_user(username, password, businessId, imgUrl, salt,token)
+        values (#{username}, #{password}, #{businessid}, #{imgurl}, #{salt},#{token}),
     </insert>
 
     <!--通过主键修改数据-->
@@ -87,8 +90,11 @@
             <if test="salt != null and salt != ''">
                 salt = #{salt},
             </if>
+            <if test="token != null and token != ''">
+                token = #{token},
+            </if>
         </set>
-        where id = #{id}
+        where username = #{username}
     </update>
 
     <!--通过主键删除-->

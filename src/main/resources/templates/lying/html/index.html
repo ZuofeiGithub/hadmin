@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>LAU后台模板</title>
+    <title>猫掌柜后台</title>
     <link rel="stylesheet" href="lying/layui/css/layui.css">
     <link rel="stylesheet" href="lying/lau/lau.css">
     <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
@@ -15,7 +15,7 @@
     <!--顶部导航开始-->
     <div class="layui-header">
         <a class="lau-logo-mini"><i class="layui-icon layui-icon-release"></i></a>
-        <a class="layui-logo">L A U</a>
+        <a class="layui-logo">猫掌柜</a>
         <!--<ul class="layui-nav layui-layout-left">-->
             <!--<li class="layui-nav-item" lay-unselect><a lau-event="sideMenu0">默认菜单</a></li>-->
             <!--<li class="layui-nav-item" lay-unselect><a lau-event="sideMenu1">切换菜单</a></li>-->
@@ -65,6 +65,7 @@
         var lau = layui.lau,
             layer = layui.layer,
             $ = layui.$;
+
 
         if("WebSocket" in window){
             var websocket = new WebSocket("ws://localhost/websocket");

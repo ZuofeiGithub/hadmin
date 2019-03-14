@@ -9,6 +9,10 @@ import com.jili.hadmin.annotation.PassToken;
 import com.jili.hadmin.annotation.UserLoginToken;
 import com.jili.hadmin.entity.SysUser;
 import com.jili.hadmin.service.SysUserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -16,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.lang.reflect.Method;
 
 
@@ -27,7 +32,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     @Autowired
     SysUserService userService;
     @Override
-    public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object){
+    public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws IOException {
         //String token = httpServletRequest.getHeader("token");// 从 http 请求头中取出 token
         String token = httpServletRequest.getParameter("token");
         // 如果不是映射到方法直接通过

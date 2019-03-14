@@ -1,7 +1,8 @@
-layui.define(['layer', 'form', 'tips'], function(exports) {
+layui.define(['layer', 'form', 'tips','cookie'], function(exports) {
     var form = layui.form,
         layer = layui.layer,
         $ = layui.$,
+        cookie = layui.cookie,
         tips = layui.tips;
 
     //刷新验证码
@@ -33,17 +34,17 @@ layui.define(['layer', 'form', 'tips'], function(exports) {
             tips.warning('验证码格式不正确');
             return false;
         }
-
         //登陆中
         tips.loading('登陆中...', 0, -1);
 
         //发送登陆表单
         $.post('/backapi/login', data.field, function (json) {
             if (json.errcode == 0) {
+                $.cookie('access_token',json.token,{ expires: 7, path: '/' });
+                $.cookie('username',data.field.username,{expires: 7, path: '/'});
                 tips.success(json.errmsg, function () {
                     location.href = '/admin';
                 });
-
             } else {
                 tips.error(json.errmsg, function () {
                     captchaImg.attr('src', captchaSrc + '?_t=' + Math.random());

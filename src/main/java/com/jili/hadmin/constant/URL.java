@@ -17,6 +17,8 @@ public class URL {
     public static final String HOME = LYINGPREFIX + "home.html";
     public static final String LMENU = LYINGPREFIX + "menu.html";
     public static final String TREETABLE = LYINGPREFIX + "treeTable.html";
+    public static final String TREESELECT = LYINGPREFIX + "treeselect.html";
+    public static final String ADD = LYINGPREFIX + "add.html";
 
     private static final String DOCPREFIX = "lying/doc/";
     public static final String CHANGELOG = DOCPREFIX + "changelog.html";

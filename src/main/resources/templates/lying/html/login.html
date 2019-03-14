@@ -60,6 +60,7 @@
 </body>
 <script src="lying/layui/layui.js"></script>
 <script>
-    layui.config({base: 'lying/js/'}).use('login');
+    layui.config({base: 'lying/js/'}).extend({cookie: 'jquery.cookie'}).use(['login']);
+
 </script>
 </html>

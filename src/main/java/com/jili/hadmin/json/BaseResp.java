@@ -8,6 +8,7 @@ package com.jili.hadmin.json;
 public class BaseResp {
     int errcode;
     String errmsg;
+    String token;
     public int getErrcode() {
         return errcode;
     }
@@ -21,6 +22,16 @@ public class BaseResp {
 
     public BaseResp setErrmsg(String errmsg) {
         this.errmsg = errmsg;
+        return this;
+    }
+
+
+    public String getToken() {
+        return token;
+    }
+
+    public BaseResp setToken(String token) {
+        this.token = token;
         return this;
     }
 }
